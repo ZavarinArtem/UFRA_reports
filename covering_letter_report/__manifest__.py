@@ -1,35 +1,29 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "/opt/odoo15/pjts/work/SPOC-Odoo/UFRA reports/covering_letter_report",
+    'name': "Covering Letter Report",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        UFRA Covering letter for stock transfer.""",
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "SPOC",
+    'website': "https://spoc-odoo.com.ua/",
+    'company': 'SPOC corp',
+    'maintainer': 'SPOC corp',
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Inventory/Inventory',
+    'version': '15.0.1.0.1',
 
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['stock'],
 
-    # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/report_covering_letter.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': [],
+    'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
 }
