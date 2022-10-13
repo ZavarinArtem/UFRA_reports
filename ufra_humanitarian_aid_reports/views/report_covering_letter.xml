@@ -4,8 +4,8 @@
         <field name="name">Covering Letter</field>
         <field name="model">stock.picking</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">covering_letter_report.covering_letter_template</field>
-        <field name="report_file">covering_letter_report.covering_letter_template</field>
+        <field name="report_name">ufra_humanitarian_aid_reports.covering_letter_template</field>
+        <field name="report_file">ufra_humanitarian_aid_reports.covering_letter_template</field>
         <field name="print_report_name">'Covering Letter.pdf'</field>
         <field name="binding_model_id" ref="stock.model_stock_picking"/>
         <field name="binding_type">report</field>
@@ -14,11 +14,12 @@
     <template id="covering_letter_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context(lang='uk_UA')" />
                 <t t-call="web.basic_layout">
                     <div align='center'>
 
                         <p>
-                            <img width='643' height='163' id='image1.png' src="/covering_letter_report/static/src/image001.png"/>
+                            <img width='643' height='163' id='image1.png' src="/ufra_humanitarian_aid_reports/static/src/image001.png"/>
                         </p>
 
                         <table border='0' cellspacing='0' cellpadding='0' style='border-collapse:collapse;border:none'>
@@ -27,8 +28,8 @@
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
                                     <p style='margin-bottom:0in;line-height:normal'>
                                         <u>
-                                            <span style='font-size:14.0pt;font-family:"Times New Roman",serif'>07 квітня
-                                                2022/04/30
+                                            <span style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                                                <t t-out="o.get_ua_date('date', 'dd MMMM YYYY')"/>
                                             </span>
                                         </u>
                                     </p>
@@ -66,7 +67,7 @@
                                     <p style='margin-bottom:0in;text-align:justify;text-indent:
   29.8pt;line-height:115%'>
                                         <span style='font-size:14.0pt;line-height:115%;font-family:"Times New Roman",serif;color:black'>
-                                            ГО «Чисті серця Калуш» звертається до Вас із неухильним проханням
+                                            <t t-out="o.company_id.name"/> звертається до Вас із неухильним проханням
                                             безперешкодного проходження гуманітарного вантажу волонтерами благодійної
                                             організації.
                                         </span>
@@ -91,8 +92,26 @@
                                     <p style='margin-bottom:0in;text-align:justify;text-indent:
   44.0pt;line-height:115%'>
                                         <span style='font-size:14.0pt;line-height:115%;
-  font-family:"Times New Roman",serif;color:black'>1. Коструб Тарас Іванович,
-                                            09.03.1974 р. н., паспорт   № 003361425;
+  font-family:"Times New Roman",serif;color:black'>
+                                            <t t-set="passport" t-value="o.driver_id.id_numbers.search([('category_id.name','=','passport'), ('status', '=', 'open')])"/>
+                                            1. <t t-out="o.driver_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт   № <t t-out="passport.name"/></t>;
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr t-if="o.driver_secondary_id">
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
+  44.0pt;line-height:115%'>
+                                        <span style='font-size:14.0pt;line-height:115%;
+  font-family:"Times New Roman",serif;color:black'>
+                                            <t t-set="passport" t-value="o.driver_secondary_id.id_numbers.search([('category_id.name','=','passport'), ('status', '=', 'open')])"/>
+                                            2. <t t-out="o.driver_secondary_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_secondary_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт   № <t t-out="passport.name"/></t>;
                                         </span>
                                     </p>
                                 </td>

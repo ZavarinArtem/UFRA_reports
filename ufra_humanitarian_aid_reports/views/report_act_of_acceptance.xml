@@ -1,0 +1,513 @@
+<odoo>
+
+<!--    Purchase Order-->
+    <record id="report_act_of_acceptance_report" model="ir.actions.report">
+        <field name="name">Act of Humanitarian Aid Acceptance</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template</field>
+        <field name="report_file">ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template</field>
+        <field name="print_report_name">'Act of Humanitarian Aid Acceptance.pdf'</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_act_of_acceptance_purchase_order_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div align='center' >
+                        <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                            <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
+                            <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
+
+                            <p align='center' style='text-align:center'>
+                                <span style='line-height:107%;'>Акт</span>
+                            </p>
+                            <p align='center' style='text-align:center'>
+                                <span style='line-height:107%;'>
+                                    прийому-передачі безповоротної матеріальної (благодійної) допомоги
+                                </span>
+                            </p>
+                            <p>
+                                <span style='line-height:107%;'>&#160;</span>
+                            </p>
+                            <p>
+                                <table border="0">
+                                    <tr>
+                                        <td align="left" width="400">
+                                            <t t-if="o.company_id.city">м.</t><t t-out="o.company_id.city"/>
+                                        </td>
+                                        <td align="right" width="400">
+                                            <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY р.')"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p>
+                            <p align='left' style='margin-bottom:0in'>
+                                <span style='line-height:107%;'>1.</span>
+                                <span style='line-height:107%;'>&#160;
+                                    <t t-out="partner.name"/>
+                                    ,в особі <t t-if="not o.partner_id.is_company" t-out="o.partner_id.name"/>
+                                    <t t-else="">___________________________________</t>,
+                                    що діє на підставі ________________, з однієї сторони,
+                                    (надалі за текстом – Благодійник) передає, та
+                                    <t t-out="o.company_id.name"/>, (надалі за текстом – Отримувач),
+                                    в особі <t t-out="o._get_company_signatory()"/>, приймає
+                                    наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
+                                </span>
+                            </p>
+
+                            <table border='1' cellspacing='0' cellpadding='0'
+                                   style='border-collapse:collapse;border:none'>
+                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
+                                    <td width='57' valign='top' style='width:43.05pt'>
+                                        <p>
+                                            <span >№п/п</span>
+                                        </p>
+                                    </td>
+                                    <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                                        <p>
+                                            <span>Найменування товару</span>
+                                        </p>
+                                    </td>
+                                    <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                                        <p>
+                                            <span>Одинця виміру</span>
+                                        </p>
+                                    </td>
+                                    <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                                        <p>
+                                            <span >Кількість</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
+                                    <tr style='line-height:normal'>
+                                        <td width='57' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line_index + 1"/>.
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='349' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.name"/>
+                                                    <t t-if="bom"> згідно пакувального листа, який додається</t>
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='142' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.product_uom.name"/>
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='94' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.product_qty"/>
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;color:white'>2. Цей акт складено українською мовою у двох оригінальних
+                                    примірниках (по одному для Благодійника та Отримувача).
+                                </span>
+                            </p>
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;'>3.
+                                    Реквізити і підписи Благодійника та Отримувача:
+                                </span>
+                            </p>
+
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;'>
+                                    &#160;
+                                </span>
+                            </p>
+
+                            <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
+
+                            <t t-foreach="o.order_line" t-as="line">
+                                <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
+                                <t t-if="bom">
+                                    <t t-call="ufra_humanitarian_aid_reports.report_package_list_template"/>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_package_list_template">
+        <div align='center'>
+            <div style="page-break-before: always;">
+
+                <p align='center' style='text-align:center'>
+                    <span style='line-height:107%;'>
+                        ПАКУВАЛЬНИЙ ЛИСТ
+                    </span>
+                </p>
+
+                <p align='center' style='text-align:center'>
+                    <span style='line-height:107%;'>до Акту</span>
+                </p>
+
+                <p align='center' style='text-align:center'>
+                    <span style='line-height:107%;'>
+                        прийому-передачі безповоротної матеріальної (благодійної) допомоги від
+                        <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY')"/>
+                        року
+                    </span>
+                </p>
+
+                <p align='center' style='text-align:center'>
+                    <span style='line-height:107%;'>
+                        &#160;
+                    </span>
+                </p>
+
+                <p align='center' style='text-align:center'>
+                    <span style='line-height:107%;'>
+                        НАПОВНЕННЯ
+                        ОДНОГО ПРОДУКТОВОГО ПАКЕТУ:
+                    </span>
+                </p>
+
+                <table border='1' cellspacing='0' cellpadding='0'
+                       style='border-collapse:collapse;border:none'>
+                    <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
+                        <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                            <p>
+                                <span>Найменування товару</span>
+                            </p>
+                        </td>
+                        <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                            <p>
+                                <span>Одинця виміру</span>
+                            </p>
+                        </td>
+                        <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                            <p>
+                                <span >Кількість</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <t t-foreach="bom.bom_line_ids" t-as="bom_line">
+                        <tr style='line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
+                            <td width='349' valign='top' style='width:261.5pt;border-top:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                                <p>
+                                    <span>
+                                        <t t-out="bom_line.product_id.name"/>
+                                    </span>
+                                </p>
+                            </td>
+                            <td width='142' valign='top' style='width:106.3pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                                <p>
+                                    <span>
+                                        <t t-out="bom_line.product_uom_id.name"/>
+                                    </span>
+                                </p>
+                            </td>
+                            <td width='94' valign='top' style='width:70.6pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                                <p>
+                                    <span>
+                                        <t t-out="bom_line.product_qty"/>
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                    </t>
+                    <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
+                        <td width='349' valign='top' align='left' style='width:261.5pt;border-left:none'>
+                            <p>
+                                <span>Вага набору</span>
+                            </p>
+                        </td>
+                        <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                            <p>
+                                <span> </span>
+                            </p>
+                        </td>
+                        <td width='94' valign='top' align='left' style='width:70.6pt;border-left:none'>
+                            <p>
+                                <span>
+                                    <t t-out="bom.weight"/>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+                <p align='center' style='margin-left:.25in;text-align:center'>
+                    <span style='line-height:107%;'>
+                        &#160;
+                    </span>
+                </p>
+
+                <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
+
+                <p style='margin:0in'>
+                    <span style='font-size:14.0pt;line-height:107%;'>&#160;</span>
+                </p>
+
+            </div>
+        </div>
+    </template>
+
+    <template id="signs_template">
+        <table border='0' cellspacing='0' cellpadding='0'
+               style='border-collapse:collapse;border:none'>
+            <tr>
+                <td width='330' valign='top' style='width:247.85pt;padding:0in 5.4pt 0in 5.4pt'>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span >Благодійник:</span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span>
+                            <t t-out="partner.name"/>
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span>
+                            <t t-out="partner.state_id.name or '' + ','">_______________________________</t>
+                        </span>
+                        <span>
+                            <t t-out="partner.city + ',' + partner.street or ''">_______________________________</t>
+                        </span>
+                        <span>
+                            <t t-out="partner.phone or ''">_______________________________</t>
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span style='font-size:8.0pt;'>(телефон)
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span style='font-size:8.0pt;'>&#160;
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span style='font-size:12.0pt;'>
+                            <t t-out="o._form_contact_signature(partner)"/>
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span style='font-size:8.0pt;'>(підпис, ПІП, печатка за наявності)
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span
+                                style='font-size:8.0pt;'>&#160;
+                        </span>
+                    </p>
+                </td>
+                <td width='311' valign='top' style='width:233.6pt;padding:0in 5.4pt 0in 5.4pt'>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span >Отримувач:
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span >
+                            <t t-out="o.company_id.name"/>
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span>
+                            <t t-out="o.company_id.state_id.name or '' + ','">_______________________________</t>
+                        </span>
+                        <span>
+                            <t t-out="o.company_id.city + ',' + o.company_id.street or ''">_______________________________</t>
+                        </span>
+                        <span>
+                            <t t-out="o.company_id.phone or ''">_______________________________</t>
+                        </span>
+                    </p>
+                    <p align='center' style='text-align:center;line-height:normal'>
+                        <span >&#160;
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span >
+                            <t t-out="o._form_contact_signature(o.company_id.partner_id)"/>
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span
+                                >
+                            &#160;
+                        </span>
+                    </p>
+                    <p align='center' style='margin:0in;text-align:center;line-height:normal'>
+                        <span >&#160;
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+<!--    Point-of-Sale Order-->
+    <record id="report_act_of_acceptance_report_pos" model="ir.actions.report">
+        <field name="name">Act of Humanitarian Aid Acceptance (PoS)</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template</field>
+        <field name="report_file">ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template</field>
+        <field name="print_report_name">'Act of Humanitarian Aid Acceptance.pdf'</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_act_of_acceptance_pos_order_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div align='center' >
+                        <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                            <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
+                            <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
+
+                            <p align='center' style='text-align:center'>
+                                <span style='line-height:107%;'>Акт</span>
+                            </p>
+                            <p align='center' style='text-align:center'>
+                                <span style='line-height:107%;'>
+                                    прийому-передачі безповоротної матеріальної (благодійної) допомоги
+                                </span>
+                            </p>
+                            <p>
+                                <span style='line-height:107%;'>&#160;</span>
+                            </p>
+                            <p>
+                                <table border="0">
+                                    <tr>
+                                        <td align="left" width="400">
+                                            <t t-if="o.company_id.city">м.</t><t t-out="o.company_id.city"/>
+                                        </td>
+                                        <td align="right" width="400">
+                                            <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY р.')"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p>
+                            <p align='left' style='margin-bottom:0in'>
+                                <span style='line-height:107%;'>1.</span>
+                                <span style='line-height:107%;'>&#160;
+                                    <t t-out="partner.name"/>
+                                    ,в особі <t t-if="not o.partner_id.is_company" t-out="o.partner_id.name"/>
+                                    <t t-else="">___________________________________</t>,
+                                    що діє на підставі ________________, з однієї сторони,
+                                    (надалі за текстом – Благодійник) передає, та
+                                    <t t-out="o.company_id.name"/>, (надалі за текстом – Отримувач),
+                                    в особі <t t-out="o._get_company_signatory()"/>, приймає
+                                    наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
+                                </span>
+                            </p>
+
+                            <table border='1' cellspacing='0' cellpadding='0'
+                                   style='border-collapse:collapse;border:none'>
+                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
+                                    <td width='57' valign='top' style='width:43.05pt'>
+                                        <p>
+                                            <span >№п/п</span>
+                                        </p>
+                                    </td>
+                                    <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                                        <p>
+                                            <span>Найменування товару</span>
+                                        </p>
+                                    </td>
+                                    <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                                        <p>
+                                            <span>Одинця виміру</span>
+                                        </p>
+                                    </td>
+                                    <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                                        <p>
+                                            <span >Кількість</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
+                                    <tr style='line-height:normal'>
+                                        <td width='57' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line_index + 1"/>.
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='349' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.name"/>
+                                                    <t t-if="bom"> згідно пакувального листа, який додається</t>
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='142' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.product_uom.name"/>
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td width='94' valign='top'>
+                                            <p>
+                                                <span>
+                                                    <t t-out="line.product_qty"/>
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;color:white'>2. Цей акт складено українською мовою у двох оригінальних
+                                    примірниках (по одному для Благодійника та Отримувача).
+                                </span>
+                            </p>
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;'>3.
+                                    Реквізити і підписи Благодійника та Отримувача:
+                                </span>
+                            </p>
+
+                            <p style='margin:0.5in'>
+                                <span style='line-height:107%;'>
+                                    &#160;
+                                </span>
+                            </p>
+
+                            <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
+
+                            <t t-foreach="o.order_line" t-as="line">
+                                <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
+                                <t t-if="bom">
+                                    <t t-call="ufra_humanitarian_aid_reports.report_package_list_template"/>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

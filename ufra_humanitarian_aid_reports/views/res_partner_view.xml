@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">ufra_humanitarian_aid_reports.view_partner_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="cha_stock.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="is_driver" position="after">
+                <field name='is_military' />
+            </field>
+
+            <xpath expr="//page[@name='sales_purchases']//group[@name='misc']" position="inside">
+                <field name='signatory' domain="[('is_company', '=', False), ('id', 'in', child_ids)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
