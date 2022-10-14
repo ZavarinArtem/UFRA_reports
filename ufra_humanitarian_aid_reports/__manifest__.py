@@ -13,7 +13,14 @@
     'category': 'Inventory',
     'version': '15.0.1.0.1',
 
-    'depends': ['stock', 'purchase', 'cha_stock', 'partner_contact_birthdate', 'partner_identification', ],
+    'depends': [
+        'point_of_sale',
+        'purchase',
+        'sale',
+        'stock',
+        'cha_stock',
+        'partner_contact_birthdate',
+        'partner_identification', ],
 
     'data': [
         'views/report_covering_letter.xml',

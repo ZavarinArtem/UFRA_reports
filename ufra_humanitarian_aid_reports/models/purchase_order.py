@@ -12,7 +12,7 @@ class PurchaseOrder(models.Model):
         if self.company_id.partner_id.signatory.comment:
             return str(self.company_id.partner_id.signatory.comment).replace('<p>', '').replace('</p>', '').replace('<br>', '')
         else:
-            return (self.company_id.partner_id.signatory.title.name or '') + ' ' \
+            return (self.company_id.partner_id.signatory.function or '') + ' ' \
                    + (self.company_id.partner_id.signatory.name or '')
 
     def _get_product_bom(self, product_id, tmpl_search=False):
@@ -44,5 +44,5 @@ class PurchaseOrder(models.Model):
         if len(name_parts) == 3:
             name = name_parts[0] + " " + name_parts[1][0] + ". " + name_parts[2][0] + "."
 
-        return (contact.signatory.title.name or '') + "_____________" + name
+        return (contact.signatory.function or '') + "_____________" + name
 

@@ -1,0 +1,356 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ufra_humanitarian_aid_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-14 11:44+0000\n"
+"PO-Revision-Date: 2022-10-14 11:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,print_report_name:ufra_humanitarian_aid_reports.report_act_of_acceptance_report
+#: model:ir.actions.report,print_report_name:ufra_humanitarian_aid_reports.report_act_of_acceptance_report_pos
+msgid "'Act of Humanitarian Aid Acceptance.pdf'"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,print_report_name:ufra_humanitarian_aid_reports.covering_letter_report_pos_order
+#: model:ir.actions.report,print_report_name:ufra_humanitarian_aid_reports.covering_letter_report_sale_order
+#: model:ir.actions.report,print_report_name:ufra_humanitarian_aid_reports.covering_letter_report_stock_picking
+msgid "'Covering Letter.pdf'"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+",\n"
+"                                    що діє на підставі ________________, з однієї сторони,\n"
+"                                    (надалі за текстом – Благодійник) передає, та"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+", (надалі за текстом – Отримувач),\n"
+"                                    в особі"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ", паспорт №"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+", приймає\n"
+"                                    наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ",в особі"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ""
+"<b>\n"
+"                                            <span style=\"\">\n"
+"                                                Супровідний-лист\n"
+"                                            </span>\n"
+"                                        </b>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ""
+"<b>\n"
+"                                            <span style=\"\">На вимогу\n"
+"                                            </span>\n"
+"                                        </b>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ""
+"<b>\n"
+"                                            <span style=\"line-height:115%;;color:black\">\n"
+"                                                Дані волонтерів, які перевозять вантаж:\n"
+"                                            </span>\n"
+"                                        </b>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ""
+"<b>\n"
+"                                            <span style=\"line-height:115%;color:black\">Вантаж, що перевозиться:\n"
+"                                            </span>\n"
+"                                        </b>\n"
+"                                        <span style=\"line-height:115%;color:black\">продукти харчування, предмети особистої гігієни, тощо.\n"
+"                                        </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.signs_template
+msgid ""
+"<span style=\"font-size:8.0pt;\">(підпис, ПІП, печатка за наявності)\n"
+"                        </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.signs_template
+msgid ""
+"<span style=\"font-size:8.0pt;\">(телефон)\n"
+"                        </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+"<span style=\"line-height:107%\">\n"
+"                                    2. Цей акт складено українською мовою у двох оригінальних\n"
+"                                    примірниках (по одному для Благодійника та Отримувача).\n"
+"                                </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+"<span style=\"line-height:107%;\">\n"
+"                                    3. Реквізити і підписи Благодійника та Отримувача:\n"
+"                                </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid ""
+"<span style=\"line-height:107%;\">\n"
+"                                    прийому-передачі безповоротної матеріальної (благодійної) допомоги\n"
+"                                </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid ""
+"<span style=\"line-height:107%;\">\n"
+"                        НАПОВНЕННЯ\n"
+"                        ОДНОГО ПРОДУКТОВОГО ПАКЕТУ:\n"
+"                    </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid ""
+"<span style=\"line-height:107%;\">\n"
+"                        ПАКУВАЛЬНИЙ ЛИСТ\n"
+"                    </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid "<span style=\"line-height:107%;\">1.</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid "<span style=\"line-height:107%;\">Акт</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "<span style=\"line-height:107%;\">до Акту</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.signs_template
+msgid "<span>Благодійник:</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "<span>Вага набору</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "<span>Кількість</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "<span>Найменування товару</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "<span>Одинця виміру</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.signs_template
+msgid ""
+"<span>Отримувач:\n"
+"                        </span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid "<span>№п/п</span>"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,name:ufra_humanitarian_aid_reports.report_act_of_acceptance_report
+msgid "Act of Humanitarian Aid Acceptance"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,name:ufra_humanitarian_aid_reports.report_act_of_acceptance_report_pos
+msgid "Act of Humanitarian Aid Acceptance (PoS)"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,name:ufra_humanitarian_aid_reports.covering_letter_report_pos_order
+msgid "Covering Letter (PoS Order)"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,name:ufra_humanitarian_aid_reports.covering_letter_report_sale_order
+msgid "Covering Letter (Sale Order)"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.actions.report,name:ufra_humanitarian_aid_reports.covering_letter_report_stock_picking
+msgid "Covering Letter (Stock Picking)"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_mrp_bom__for_print
+msgid "For Print"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_res_partner__is_military
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_res_users__is_military
+msgid "Is Military"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_res_partner__signatory
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_res_users__signatory
+msgid "Signatory"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model,name:ufra_humanitarian_aid_reports.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model:ir.model.fields,field_description:ufra_humanitarian_aid_reports.field_mrp_bom__weight
+msgid "Weight"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.signs_template
+msgid "_______________________________"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid "___________________________________"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid ""
+"звертається до Вас із неухильним проханням\n"
+"                                            безперешкодного проходження гуманітарного вантажу волонтерами благодійної\n"
+"                                            організації."
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_pos_order_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_act_of_acceptance_purchase_order_template
+msgid "згідно пакувального листа, який додається"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "прийому-передачі безповоротної матеріальної (благодійної) допомоги від"
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_pos_order
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.covering_letter_template_sale_order
+msgid "р. н."
+msgstr ""
+
+#. module: ufra_humanitarian_aid_reports
+#: model_terms:ir.ui.view,arch_db:ufra_humanitarian_aid_reports.report_package_list_template
+msgid "року"
+msgstr ""

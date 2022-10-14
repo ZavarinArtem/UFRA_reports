@@ -15,13 +15,13 @@
 
     <template id="report_act_of_acceptance_purchase_order_template">
         <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="15"/>
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
                     <div align='center' >
                         <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
                             <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
                             <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
-
                             <p align='center' style='text-align:center'>
                                 <span style='line-height:107%;'>Акт</span>
                             </p>
@@ -58,26 +58,25 @@
                                     наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
                                 </span>
                             </p>
-
                             <table border='1' cellspacing='0' cellpadding='0'
                                    style='border-collapse:collapse;border:none'>
-                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                                    <td width='57' valign='top' style='width:43.05pt'>
+                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
+                                    <td width='57' valign='top'>
                                         <p>
-                                            <span >№п/п</span>
+                                            <span>№п/п</span>
                                         </p>
                                     </td>
-                                    <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                                    <td width='349' valign='top'>
                                         <p>
                                             <span>Найменування товару</span>
                                         </p>
                                     </td>
-                                    <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                                    <td width='142' valign='top'>
                                         <p>
                                             <span>Одинця виміру</span>
                                         </p>
                                     </td>
-                                    <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                                    <td width='94' valign='top'>
                                         <p>
                                             <span >Кількість</span>
                                         </p>
@@ -86,14 +85,14 @@
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                     <tr style='line-height:normal'>
-                                        <td width='57' valign='top'>
+                                        <td width='57' valign='top' style="padding-left:10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line_index + 1"/>.
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top'>
+                                        <td width='349' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.name"/>
@@ -101,14 +100,14 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top'>
+                                        <td width='142' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_uom.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top'>
+                                        <td width='94' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_qty"/>
@@ -118,26 +117,18 @@
                                     </tr>
                                 </t>
                             </table>
-
-                            <p style='margin:0.5in'>
-                                <span style='line-height:107%;color:white'>2. Цей акт складено українською мовою у двох оригінальних
+                            <p align='left'>
+                                <span style='line-height:107%'>
+                                    2. Цей акт складено українською мовою у двох оригінальних
                                     примірниках (по одному для Благодійника та Отримувача).
                                 </span>
                             </p>
-                            <p style='margin:0.5in'>
-                                <span style='line-height:107%;'>3.
-                                    Реквізити і підписи Благодійника та Отримувача:
-                                </span>
-                            </p>
-
-                            <p style='margin:0.5in'>
+                            <p align='left'>
                                 <span style='line-height:107%;'>
-                                    &#160;
+                                    3. Реквізити і підписи Благодійника та Отримувача:
                                 </span>
                             </p>
-
                             <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
-
                             <t t-foreach="o.order_line" t-as="line">
                                 <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                 <t t-if="bom">
@@ -172,20 +163,17 @@
                         року
                     </span>
                 </p>
-
                 <p align='center' style='text-align:center'>
                     <span style='line-height:107%;'>
                         &#160;
                     </span>
                 </p>
-
                 <p align='center' style='text-align:center'>
                     <span style='line-height:107%;'>
                         НАПОВНЕННЯ
                         ОДНОГО ПРОДУКТОВОГО ПАКЕТУ:
                     </span>
                 </p>
-
                 <table border='1' cellspacing='0' cellpadding='0'
                        style='border-collapse:collapse;border:none'>
                     <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
@@ -207,21 +195,21 @@
                     </tr>
                     <t t-foreach="bom.bom_line_ids" t-as="bom_line">
                         <tr style='line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                            <td width='349' valign='top' style='width:261.5pt;border-top:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                            <td width='349' valign='top' style="padding: 10px 0 0 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='142' valign='top' style='width:106.3pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                            <td width='142' valign='top' style="padding: 10px 0 0 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_uom_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='94' valign='top' style='width:70.6pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt'>
+                            <td width='94' valign='top' style="padding: 10px 0 0 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_qty"/>
@@ -231,7 +219,7 @@
                         </tr>
                     </t>
                     <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
-                        <td width='349' valign='top' align='left' style='width:261.5pt;border-left:none'>
+                        <td width='349' valign='top' align='left' style="padding: 10px 0 0 10px;">
                             <p>
                                 <span>Вага набору</span>
                             </p>
@@ -241,7 +229,7 @@
                                 <span> </span>
                             </p>
                         </td>
-                        <td width='94' valign='top' align='left' style='width:70.6pt;border-left:none'>
+                        <td width='94' valign='top' align='left' style="padding: 10px 0 0 10px;">
                             <p>
                                 <span>
                                     <t t-out="bom.weight"/>
@@ -250,19 +238,7 @@
                         </td>
                     </tr>
                 </table>
-
-                <p align='center' style='margin-left:.25in;text-align:center'>
-                    <span style='line-height:107%;'>
-                        &#160;
-                    </span>
-                </p>
-
                 <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
-
-                <p style='margin:0in'>
-                    <span style='font-size:14.0pt;line-height:107%;'>&#160;</span>
-                </p>
-
             </div>
         </div>
     </template>
@@ -282,11 +258,15 @@
                     </p>
                     <p style='line-height:normal'>
                         <span>
-                            <t t-out="partner.state_id.name or '' + ','">_______________________________</t>
+                            <t t-out="partner.country_id.name + ',' if partner.country_id else ''">_______________________________</t>
                         </span>
+                    </p>
+                    <p style='line-height:normal'>
                         <span>
-                            <t t-out="partner.city + ',' + partner.street or ''">_______________________________</t>
+                            <t t-out="partner.city + ', ' + partner.street if partner.city or partner.street else ''">_______________________________</t>
                         </span>
+                    </p>
+                    <p style='line-height:normal'>
                         <span>
                             <t t-out="partner.phone or ''">_______________________________</t>
                         </span>
@@ -296,21 +276,12 @@
                         </span>
                     </p>
                     <p align='center' style='text-align:center;line-height:normal'>
-                        <span style='font-size:8.0pt;'>&#160;
-                        </span>
-                    </p>
-                    <p align='center' style='text-align:center;line-height:normal'>
                         <span style='font-size:12.0pt;'>
                             <t t-out="o._form_contact_signature(partner)"/>
                         </span>
                     </p>
                     <p align='center' style='text-align:center;line-height:normal'>
                         <span style='font-size:8.0pt;'>(підпис, ПІП, печатка за наявності)
-                        </span>
-                    </p>
-                    <p style='line-height:normal'>
-                        <span
-                                style='font-size:8.0pt;'>&#160;
                         </span>
                     </p>
                 </td>
@@ -326,32 +297,22 @@
                     </p>
                     <p style='line-height:normal'>
                         <span>
-                            <t t-out="o.company_id.state_id.name or '' + ','">_______________________________</t>
-                        </span>
-                        <span>
-                            <t t-out="o.company_id.city + ',' + o.company_id.street or ''">_______________________________</t>
-                        </span>
-                        <span>
-                            <t t-out="o.company_id.phone or ''">_______________________________</t>
+                            <t t-out="o.company_id.country_id.name + ',' if o.company_id.country_id else ''">_______________________________</t>
                         </span>
                     </p>
-                    <p align='center' style='text-align:center;line-height:normal'>
-                        <span >&#160;
+                    <p style='line-height:normal'>
+                        <span>
+                            <t t-out="o.company_id.city + ', ' + o.company_id.street if o.company_id.city or o.company_id.street else ''">_______________________________</t>
+                        </span>
+                    </p>
+                    <p style='line-height:normal'>
+                        <span>
+                            <t t-out="o.company_id.phone or ''">_______________________________</t>
                         </span>
                     </p>
                     <p style='line-height:normal'>
                         <span >
                             <t t-out="o._form_contact_signature(o.company_id.partner_id)"/>
-                        </span>
-                    </p>
-                    <p style='line-height:normal'>
-                        <span
-                                >
-                            &#160;
-                        </span>
-                    </p>
-                    <p align='center' style='margin:0in;text-align:center;line-height:normal'>
-                        <span >&#160;
                         </span>
                     </p>
                 </td>
@@ -374,13 +335,13 @@
 
     <template id="report_act_of_acceptance_pos_order_template">
         <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="15"/>
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
                     <div align='center' >
                         <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
                             <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
                             <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
-
                             <p align='center' style='text-align:center'>
                                 <span style='line-height:107%;'>Акт</span>
                             </p>
@@ -417,26 +378,25 @@
                                     наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
                                 </span>
                             </p>
-
                             <table border='1' cellspacing='0' cellpadding='0'
                                    style='border-collapse:collapse;border:none'>
-                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                                    <td width='57' valign='top' style='width:43.05pt'>
+                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
+                                    <td width='57' valign='top'>
                                         <p>
-                                            <span >№п/п</span>
+                                            <span>№п/п</span>
                                         </p>
                                     </td>
-                                    <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                                    <td width='349' valign='top'>
                                         <p>
                                             <span>Найменування товару</span>
                                         </p>
                                     </td>
-                                    <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                                    <td width='142' valign='top'>
                                         <p>
                                             <span>Одинця виміру</span>
                                         </p>
                                     </td>
-                                    <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                                    <td width='94' valign='top'>
                                         <p>
                                             <span >Кількість</span>
                                         </p>
@@ -445,14 +405,14 @@
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                     <tr style='line-height:normal'>
-                                        <td width='57' valign='top'>
+                                        <td width='57' valign='top' style="padding-left:10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line_index + 1"/>.
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top'>
+                                        <td width='349' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.name"/>
@@ -460,14 +420,14 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top'>
+                                        <td width='142' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_uom.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top'>
+                                        <td width='94' valign='top' style="padding: 10px 0 0 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_qty"/>
@@ -477,26 +437,18 @@
                                     </tr>
                                 </t>
                             </table>
-
-                            <p style='margin:0.5in'>
-                                <span style='line-height:107%;color:white'>2. Цей акт складено українською мовою у двох оригінальних
+                            <p align='left'>
+                                <span style='line-height:107%'>
+                                    2. Цей акт складено українською мовою у двох оригінальних
                                     примірниках (по одному для Благодійника та Отримувача).
                                 </span>
                             </p>
-                            <p style='margin:0.5in'>
-                                <span style='line-height:107%;'>3.
-                                    Реквізити і підписи Благодійника та Отримувача:
-                                </span>
-                            </p>
-
-                            <p style='margin:0.5in'>
+                            <p align='left'>
                                 <span style='line-height:107%;'>
-                                    &#160;
+                                    3. Реквізити і підписи Благодійника та Отримувача:
                                 </span>
                             </p>
-
                             <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
-
                             <t t-foreach="o.order_line" t-as="line">
                                 <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                 <t t-if="bom">

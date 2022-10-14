@@ -1,7 +1,7 @@
 <odoo>
-
-    <record id="covering_letter_report" model="ir.actions.report">
-        <field name="name">Covering Letter</field>
+<!--    Stock Picking-->
+    <record id="covering_letter_report_stock_picking" model="ir.actions.report">
+        <field name="name">Covering Letter (Stock Picking)</field>
         <field name="model">stock.picking</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">ufra_humanitarian_aid_reports.covering_letter_template</field>
@@ -16,20 +16,18 @@
             <t t-foreach="docs" t-as="o">
                 <t t-set="o" t-value="o.with_context(lang='uk_UA')" />
                 <t t-call="web.basic_layout">
-                    <div align='center'>
-
+                    <div align='center' style='font-size:14.0pt;font-family:"Times New Roman",serif'>
                         <p>
                             <img width='643' height='163' id='image1.png' src="/ufra_humanitarian_aid_reports/static/src/image001.png"/>
                         </p>
-
                         <table border='0' cellspacing='0' cellpadding='0' style='border-collapse:collapse;border:none'>
                             <tr style='height:28.35pt'>
                                 <td width='642' colspan='3' valign='top'
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
                                     <p style='margin-bottom:0in;line-height:normal'>
                                         <u>
-                                            <span style='font-size:14.0pt;font-family:"Times New Roman",serif'>
-                                                <t t-out="o.get_ua_date('date', 'dd MMMM YYYY')"/>
+                                            <span>
+                                                <t t-out="o._get_name_for_printing()"/>
                                             </span>
                                         </u>
                                     </p>
@@ -40,7 +38,7 @@
                                     style='width:433.3pt;padding:0in 5.4pt 0in 5.4pt'>
                                     <p align='right' style='margin-bottom:0in;text-align:right; line-height:normal'>
                                         <b>
-                                            <span style='font-size:14.0pt;font-family:"Times New Roman",serif'>На вимогу
+                                            <span style=''>На вимогу
                                             </span>
                                         </b>
                                     </p>
@@ -54,7 +52,7 @@
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
                                     <p align='center' style='text-align:center'>
                                         <b>
-                                            <span style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                                            <span style=''>
                                                 Супровідний-лист
                                             </span>
                                         </b>
@@ -64,9 +62,8 @@
                             <tr>
                                 <td width='642' colspan='3' valign='top'
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  29.8pt;line-height:115%'>
-                                        <span style='font-size:14.0pt;line-height:115%;font-family:"Times New Roman",serif;color:black'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:29.8pt;line-height:115%'>
+                                        <span style='line-height:115%;;color:black'>
                                             <t t-out="o.company_id.name"/> звертається до Вас із неухильним проханням
                                             безперешкодного проходження гуманітарного вантажу волонтерами благодійної
                                             організації.
@@ -79,7 +76,7 @@
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
                                     <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
                                         <b>
-                                            <span style='font-size:14.0pt;line-height:115%;font-family:"Times New Roman",serif;color:black'>
+                                            <span style='line-height:115%;;color:black'>
                                                 Дані волонтерів, які перевозять вантаж:
                                             </span>
                                         </b>
@@ -89,14 +86,12 @@
                             <tr>
                                 <td width='642' colspan='3' valign='top'
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  44.0pt;line-height:115%'>
-                                        <span style='font-size:14.0pt;line-height:115%;
-  font-family:"Times New Roman",serif;color:black'>
-                                            <t t-set="passport" t-value="o.driver_id.id_numbers.search([('category_id.name','=','passport'), ('status', '=', 'open')])"/>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_id)"/>
                                             1. <t t-out="o.driver_id.name"/>
                                             <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
-                                            <t t-if="passport">, паспорт   № <t t-out="passport.name"/></t>;
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
                                         </span>
                                     </p>
                                 </td>
@@ -104,14 +99,12 @@
                             <tr t-if="o.driver_secondary_id">
                                 <td width='642' colspan='3' valign='top'
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  44.0pt;line-height:115%'>
-                                        <span style='font-size:14.0pt;line-height:115%;
-  font-family:"Times New Roman",serif;color:black'>
-                                            <t t-set="passport" t-value="o.driver_secondary_id.id_numbers.search([('category_id.name','=','passport'), ('status', '=', 'open')])"/>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_secondary_id)"/>
                                             2. <t t-out="o.driver_secondary_id.name"/>
                                             <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_secondary_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
-                                            <t t-if="passport">, паспорт   № <t t-out="passport.name"/></t>;
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
                                         </span>
                                     </p>
                                 </td>
@@ -119,45 +112,37 @@
                             <tr>
                                 <td width='642' colspan='3' valign='top'
                                     style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  35.4pt;line-height:115%'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
                                         <b>
-                                            <span style='font-size:14.0pt;line-height:115%;
-  font-family:"Times New Roman",serif;color:black'>&#160;
+                                            <span style='line-height:115%;color:black'>&#160;
                                             </span>
                                         </b>
                                     </p>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  35.4pt;line-height:115%'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
                                         <b>
-                                            <span style='font-size:14.0pt;line-height:115%;
-  font-family:"Times New Roman",serif;color:black'>Вантаж, що перевозиться:
+                                            <span style='line-height:115%;color:black'>Вантаж, що перевозиться:
                                             </span>
                                         </b>
                                         <span
-                                                style='font-size:14.0pt;line-height:115%;font-family:"Times New Roman",serif;
-  color:black'>продукти харчування, предмети особистої гігієни, тощо.
+                                                style='line-height:115%;color:black'>продукти харчування, предмети особистої гігієни, тощо.
                                         </span>
                                     </p>
-                                    <p style='margin-bottom:0in;text-align:justify;text-indent:
-  35.4pt;line-height:115%'>&#160;
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>&#160;
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td width='257' valign='top' style='width:192.55pt;padding:0in 5.4pt 0in 5.4pt'>
                                     <p style='margin-bottom:0in;line-height:115%'>
-                                        <span style='font-size:14.0pt;line-height:115%;font-family:"Times New Roman",serif'>
-                                            Керівник
+                                        <span style='line-height:115%;'>
+                                            <t t-out="o.company_id.partner_id.signatory.function"/>
                                         </span>
                                     </p>
                                 </td>
                                 <td width='385' colspan='2' valign='top'
                                     style='width:288.9pt;padding:0in 5.4pt 0in 5.4pt'>
-                                    <p align='right' style='margin-bottom:0in;text-align:right;
-  line-height:115%'>
-                                        <span style='font-size:14.0pt;line-height:115%;font-family:
-  "Times New Roman",serif'>Михайло НАЙДА
+                                    <p align='right' style='margin-bottom:0in;text-align:right;line-height:115%'>
+                                        <span style='line-height:115%'><t t-out="o.company_id.partner_id.signatory.name"/>
                                         </span>
                                     </p>
                                 </td>
@@ -180,4 +165,339 @@
             </t>
         </t>
     </template>
+
+<!--    Sale Order-->
+    <record id="covering_letter_report_sale_order" model="ir.actions.report">
+        <field name="name">Covering Letter (Sale Order)</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ufra_humanitarian_aid_reports.covering_letter_template_sale_order</field>
+        <field name="report_file">ufra_humanitarian_aid_reports.covering_letter_template_sale_order</field>
+        <field name="print_report_name">'Covering Letter.pdf'</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="covering_letter_template_sale_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context(lang='uk_UA')" />
+                <t t-call="web.basic_layout">
+                    <div align='center' style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                        <p>
+                            <img width='643' height='163' id='image1.png' src="/ufra_humanitarian_aid_reports/static/src/image001.png"/>
+                        </p>
+                        <table border='0' cellspacing='0' cellpadding='0' style='border-collapse:collapse;border:none'>
+                            <tr style='height:28.35pt'>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
+                                    <p style='margin-bottom:0in;line-height:normal'>
+                                        <u>
+                                            <span>
+                                                <t t-out="o._get_name_for_printing()"/>
+                                            </span>
+                                        </u>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='578' colspan='2' valign='top'
+                                    style='width:433.3pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p align='right' style='margin-bottom:0in;text-align:right; line-height:normal'>
+                                        <b>
+                                            <span style=''>На вимогу
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td width='64' valign='top' style='width:48.15pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;line-height:normal'>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr style='height:28.35pt'>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
+                                    <p align='center' style='text-align:center'>
+                                        <b>
+                                            <span style=''>
+                                                Супровідний-лист
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:29.8pt;line-height:115%'>
+                                        <span style='line-height:115%;;color:black'>
+                                            <t t-out="o.company_id.name"/> звертається до Вас із неухильним проханням
+                                            безперешкодного проходження гуманітарного вантажу волонтерами благодійної
+                                            організації.
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;;color:black'>
+                                                Дані волонтерів, які перевозять вантаж:
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_id)"/>
+                                            1. <t t-out="o.driver_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr t-if="o.driver_secondary_id">
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_secondary_id)"/>
+                                            2. <t t-out="o.driver_secondary_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_secondary_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;color:black'>&#160;
+                                            </span>
+                                        </b>
+                                    </p>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;color:black'>Вантаж, що перевозиться:
+                                            </span>
+                                        </b>
+                                        <span
+                                                style='line-height:115%;color:black'>продукти харчування, предмети особистої гігієни, тощо.
+                                        </span>
+                                    </p>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>&#160;
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='257' valign='top' style='width:192.55pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;line-height:115%'>
+                                        <span style='line-height:115%;'>
+                                            <t t-out="o.company_id.partner_id.signatory.function"/>
+                                        </span>
+                                    </p>
+                                </td>
+                                <td width='385' colspan='2' valign='top'
+                                    style='width:288.9pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p align='right' style='margin-bottom:0in;text-align:right;line-height:115%'>
+                                        <span style='line-height:115%'><t t-out="o.company_id.partner_id.signatory.name"/>
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr height='0'>
+                                <td width='257' style='border:none'>
+                                </td>
+                                <td width='321' style='border:none'>
+                                </td>
+                                <td width='64' style='border:none'>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p style='line-height:115%'>&#160;</p>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+<!--    Point-of-Sale Order-->
+    <record id="covering_letter_report_pos_order" model="ir.actions.report">
+        <field name="name">Covering Letter (PoS Order)</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ufra_humanitarian_aid_reports.covering_letter_template_pos_order</field>
+        <field name="report_file">ufra_humanitarian_aid_reports.covering_letter_template_pos_order</field>
+        <field name="print_report_name">'Covering Letter.pdf'</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="covering_letter_template_pos_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context(lang='uk_UA')" />
+                <t t-call="web.basic_layout">
+                    <div align='center' style='font-size:14.0pt;font-family:"Times New Roman",serif'>
+                        <p>
+                            <img width='643' height='163' id='image1.png' src="/ufra_humanitarian_aid_reports/static/src/image001.png"/>
+                        </p>
+                        <table border='0' cellspacing='0' cellpadding='0' style='border-collapse:collapse;border:none'>
+                            <tr style='height:28.35pt'>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
+                                    <p style='margin-bottom:0in;line-height:normal'>
+                                        <u>
+                                            <span>
+                                                <t t-out="o._get_name_for_printing()"/>
+                                            </span>
+                                        </u>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='578' colspan='2' valign='top'
+                                    style='width:433.3pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p align='right' style='margin-bottom:0in;text-align:right; line-height:normal'>
+                                        <b>
+                                            <span style=''>На вимогу
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td width='64' valign='top' style='width:48.15pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;line-height:normal'>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr style='height:28.35pt'>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt;height:28.35pt'>
+                                    <p align='center' style='text-align:center'>
+                                        <b>
+                                            <span style=''>
+                                                Супровідний-лист
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:29.8pt;line-height:115%'>
+                                        <span style='line-height:115%;;color:black'>
+                                            <t t-out="o.company_id.name"/> звертається до Вас із неухильним проханням
+                                            безперешкодного проходження гуманітарного вантажу волонтерами благодійної
+                                            організації.
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;;color:black'>
+                                                Дані волонтерів, які перевозять вантаж:
+                                            </span>
+                                        </b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_id)"/>
+                                            1. <t t-out="o.driver_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr t-if="o.driver_secondary_id">
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:44.0pt;line-height:115%'>
+                                        <span style='line-height:115%;color:black'>
+                                            <t t-set="passport" t-value="o._get_driver_passport(o.driver_secondary_id)"/>
+                                            2. <t t-out="o.driver_secondary_id.name"/>
+                                            <t t-if="o.driver_id.birthdate_date">, <t t-out="o.driver_secondary_id.birthdate_date.strftime('%d.%m.%Y')"/> р. н.</t>
+                                            <t t-if="passport">, паспорт № <t t-out="passport.name"/></t>;
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='642' colspan='3' valign='top'
+                                    style='width:481.45pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;color:black'>&#160;
+                                            </span>
+                                        </b>
+                                    </p>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>
+                                        <b>
+                                            <span style='line-height:115%;color:black'>Вантаж, що перевозиться:
+                                            </span>
+                                        </b>
+                                        <span
+                                                style='line-height:115%;color:black'>продукти харчування, предмети особистої гігієни, тощо.
+                                        </span>
+                                    </p>
+                                    <p style='margin-bottom:0in;text-align:justify;text-indent:35.4pt;line-height:115%'>&#160;
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='257' valign='top' style='width:192.55pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p style='margin-bottom:0in;line-height:115%'>
+                                        <span style='line-height:115%;'>
+                                            <t t-out="o.company_id.partner_id.signatory.function"/>
+                                        </span>
+                                    </p>
+                                </td>
+                                <td width='385' colspan='2' valign='top'
+                                    style='width:288.9pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p align='right' style='margin-bottom:0in;text-align:right;line-height:115%'>
+                                        <span style='line-height:115%'><t t-out="o.company_id.partner_id.signatory.name"/>
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr height='0'>
+                                <td width='257' style='border:none'>
+                                </td>
+                                <td width='321' style='border:none'>
+                                </td>
+                                <td width='64' style='border:none'>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p style='line-height:115%'>&#160;</p>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
 </odoo>
