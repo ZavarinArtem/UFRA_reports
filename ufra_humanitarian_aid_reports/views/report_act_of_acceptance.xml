@@ -20,8 +20,12 @@
                 <t t-call="web.basic_layout">
                     <div align='center' >
                         <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
-                            <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
-                            <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
+                            <t t-if="o.partner_id.is_company or not o.partner_id.company_id.partner_id">
+                                <t t-set="partner" t-value="o.partner_id"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="partner" t-value="o.partner_id.company_id.partner_id"/>
+                            </t>
                             <p align='center' style='text-align:center'>
                                 <span style='line-height:107%;'>Акт</span>
                             </p>
@@ -92,7 +96,7 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='349' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.name"/>
@@ -100,14 +104,14 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='142' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_uom.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='94' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_qty"/>
@@ -159,7 +163,12 @@
                 <p align='center' style='text-align:center'>
                     <span style='line-height:107%;'>
                         прийому-передачі безповоротної матеріальної (благодійної) допомоги від
-                        <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY')"/>
+                        <t t-if="o._name=='purchase.order'">
+                            <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY')"/>
+                        </t>
+                        <t t-else="">
+                            <t t-out="o.get_ua_date('date_order', '«dd» MMMM YYYY')"/>
+                        </t>
                         року
                     </span>
                 </p>
@@ -195,21 +204,21 @@
                     </tr>
                     <t t-foreach="bom.bom_line_ids" t-as="bom_line">
                         <tr style='line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                            <td width='349' valign='top' style="padding: 10px 0 0 10px;">
+                            <td width='349' valign='top' style="padding-left: 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='142' valign='top' style="padding: 10px 0 0 10px;">
+                            <td width='142' valign='top' style="padding-left: 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_uom_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='94' valign='top' style="padding: 10px 0 0 10px;">
+                            <td width='94' valign='top' style="padding-left: 10px;">
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_qty"/>
@@ -219,7 +228,7 @@
                         </tr>
                     </t>
                     <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
-                        <td width='349' valign='top' align='left' style="padding: 10px 0 0 10px;">
+                        <td width='349' valign='top' align='left' style="padding-left: 10px;">
                             <p>
                                 <span>Вага набору</span>
                             </p>
@@ -229,7 +238,7 @@
                                 <span> </span>
                             </p>
                         </td>
-                        <td width='94' valign='top' align='left' style="padding: 10px 0 0 10px;">
+                        <td width='94' valign='top' align='left' style="padding-left: 10px;">
                             <p>
                                 <span>
                                     <t t-out="bom.weight"/>
@@ -263,7 +272,12 @@
                     </p>
                     <p style='line-height:normal'>
                         <span>
-                            <t t-out="partner.city + ', ' + partner.street if partner.city or partner.street else ''">_______________________________</t>
+                            <t t-if="partner.city and partner.street" t-out="partner.city + ', ' + partner.street"/>
+                            <t t-elif="partner.city" t-out="partner.city + ', '"/>
+                            <t t-elif="partner.street" t-out="partner.street + ', '"/>
+                            <t t-else="">
+                            _______________________________
+                            </t>
                         </span>
                     </p>
                     <p style='line-height:normal'>
@@ -340,8 +354,12 @@
                 <t t-call="web.basic_layout">
                     <div align='center' >
                         <div style='font-size:14.0pt;font-family:"Times New Roman",serif'>
-                            <t t-if="o.partner_id.is_company or not o.partner_id.company_id" t-set="partner" t-value="o.partner_id"/>
-                            <t t-else="" t-set="partner" t-value="o.partner_id.company_id"/>
+                            <t t-if="o.received_from_id.is_company or not o.received_from_id.company_id.partner_id">
+                                <t t-set="partner" t-value="o.received_from_id"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="partner" t-value="o.received_from_id.company_id.partner_id"/>
+                            </t>
                             <p align='center' style='text-align:center'>
                                 <span style='line-height:107%;'>Акт</span>
                             </p>
@@ -360,7 +378,7 @@
                                             <t t-if="o.company_id.city">м.</t><t t-out="o.company_id.city"/>
                                         </td>
                                         <td align="right" width="400">
-                                            <t t-out="o.get_ua_date('date_planned', '«dd» MMMM YYYY р.')"/>
+                                            <t t-out="o.get_ua_date('date_order', '«dd» MMMM YYYY р.')"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -369,7 +387,7 @@
                                 <span style='line-height:107%;'>1.</span>
                                 <span style='line-height:107%;'>&#160;
                                     <t t-out="partner.name"/>
-                                    ,в особі <t t-if="not o.partner_id.is_company" t-out="o.partner_id.name"/>
+                                    ,в особі <t t-if="not o.received_from_id.is_company" t-out="o.received_from_id.name"/>
                                     <t t-else="">___________________________________</t>,
                                     що діє на підставі ________________, з однієї сторони,
                                     (надалі за текстом – Благодійник) передає, та
@@ -402,7 +420,7 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <t t-foreach="o.order_line" t-as="line">
+                                <t t-foreach="o.lines" t-as="line">
                                     <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                     <tr style='line-height:normal'>
                                         <td width='57' valign='top' style="padding-left:10px;">
@@ -412,25 +430,25 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='349' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
-                                                    <t t-out="line.name"/>
+                                                    <t t-out="line.full_product_name"/>
                                                     <t t-if="bom"> згідно пакувального листа, який додається</t>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='142' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
-                                                    <t t-out="line.product_uom.name"/>
+                                                    <t t-out="line.product_uom_id.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top' style="padding: 10px 0 0 10px;">
+                                        <td width='94' valign='top' style="padding-left: 10px;">
                                             <p>
                                                 <span>
-                                                    <t t-out="line.product_qty"/>
+                                                    <t t-out="line.qty"/>
                                                 </span>
                                             </p>
                                         </td>
@@ -449,7 +467,7 @@
                                 </span>
                             </p>
                             <t t-call="ufra_humanitarian_aid_reports.signs_template"/>
-                            <t t-foreach="o.order_line" t-as="line">
+                            <t t-foreach="o.lines" t-as="line">
                                 <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
                                 <t t-if="bom">
                                     <t t-call="ufra_humanitarian_aid_reports.report_package_list_template"/>

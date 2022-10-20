@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class MrpBom(models.Model):
@@ -11,5 +11,6 @@ class MrpBom(models.Model):
     weight = fields.Float(string='Weight', digits=(15, 3))
     for_print = fields.Boolean()
 
+    @api.model_create_multi
     def create(self, vals_list):
-        a = 1
+        return super(MrpBom, self).create(vals_list)
