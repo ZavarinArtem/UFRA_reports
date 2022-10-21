@@ -2,16 +2,16 @@
 <templates id="template" xml:space="preserve">
 
 
-    <t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="2">
+    <t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
 
         <xpath expr="//div[hasclass('main-content')]//div[hasclass('right-content')]//div[@id='no-trailer']" position="after">
-            <t t-if="env.pos.config.configuration_type == 'outgoing'">
+            <t t-if="env.pos.config.picking_type_code == 'outgoing'">
                 <div class="client-detail" style="padding-bottom: 10px;" id="number-of-adults">
-                    <span class="label" style="font-size: 2em; font-weight: bold;">Number of Adults:</span><br/>
+                    <span class="label" style="font-size: 2em; font-weight: bold;">Кіл-ть дорослих:</span><br/>
                     <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_adults" t-att-value="props.number_of_adults || currentOrder.number_of_adults || ''" t-on-change="captureChange"/>
                 </div>
                 <div class="client-detail" style="padding-bottom: 10px;" id="number-of-children">
-                    <span class="label" style="font-size: 2em; font-weight: bold;">Number of Children:</span><br/>
+                    <span class="label" style="font-size: 2em; font-weight: bold;">Кіл-ть дітей:</span><br/>
                     <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_children" t-att-value="props.number_of_children || currentOrder.number_of_children || ''" t-on-change="captureChange"/>
                 </div>
             </t>

@@ -15,11 +15,12 @@ const UFRAPaymentScreen = (PaymentScreen) =>
             this.changes['number_of_adults'] = this.currentOrder.number_of_adults || 1;
             this.changes['number_of_children'] = this.currentOrder.number_of_children || 0;
 
-            console.log('213');
+            console.log(this.currentOrder);
         }
 
         async _finalizeValidation()
         {
+
             this.currentOrder.number_of_adults = this.changes.number_of_adults;
             this.currentOrder.number_of_children = this.changes.number_of_children;
 
@@ -28,10 +29,8 @@ const UFRAPaymentScreen = (PaymentScreen) =>
 
         async selectClient() {
             const oldClient = this.currentOrder.get_client();
-            super.selectClient();
+            await super.selectClient();
 
-//            this.currentOrder.number_of_adults  = newClient.number_of_adults;
-//            this.currentOrder.number_of_children  = newClient.number_of_children;
             const client = this.currentOrder.get_client();
             if (oldClient !== client) {
                 this.changes.number_of_adults  = client.number_of_adults;

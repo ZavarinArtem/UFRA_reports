@@ -29,7 +29,7 @@
             'ufra_number_of_people_in_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js',
         ],
         'web.assets_qweb': [
-            'ufra_number_of_people_in_pos/static/src/xml/**/*',
+            'ufra_number_of_people_in_pos/static/src/xml/Screens/PaymentScreen/PaymentScreen.xml',
         ],
     },
 
