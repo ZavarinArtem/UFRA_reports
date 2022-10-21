@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">ufra_number_of_people_in_pos.view_partner_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="number_of_adults" attrs="{'invisible': [('is_company', '=', True)]}"/>
+                <field name="number_of_children" attrs="{'invisible': [('is_company', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

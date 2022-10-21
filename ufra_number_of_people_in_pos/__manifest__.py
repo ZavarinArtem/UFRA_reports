@@ -19,7 +19,20 @@
         ],
 
     'data': [
+        'views/res_partner_views.xml',
+        'views/pos_order_view.xml',
     ],
+
+    'assets': {
+        'point_of_sale.assets': [
+            'ufra_number_of_people_in_pos/static/src/js/models.js',
+            'ufra_number_of_people_in_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js',
+        ],
+        'web.assets_qweb': [
+            'ufra_number_of_people_in_pos/static/src/xml/**/*',
+        ],
+    },
+
     'demo': [],
     'installable': True,
     'auto_install': True,
