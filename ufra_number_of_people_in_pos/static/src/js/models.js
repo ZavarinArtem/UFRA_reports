@@ -4,7 +4,6 @@ odoo.define('ufra_number_of_people_in_pos.models', function (require) {
 
     const models = require('point_of_sale.models');
 
-
     const _super_pos = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
 
@@ -21,6 +20,27 @@ odoo.define('ufra_number_of_people_in_pos.models', function (require) {
 
         },
 
+    });
+
+    const _super_order = models.Order.prototype;
+    models.Order = models.Order.extend({
+        init_from_JSON: function(json)
+        {
+            _super_order.init_from_JSON.apply(this, arguments);
+
+            this.number_of_adults = json['number_of_adults'];
+            this.number_of_children = json['number_of_children'];
+        },
+
+        export_as_JSON: function()
+        {
+            const json = _super_order.export_as_JSON.apply(this, arguments);
+
+            json['number_of_adults'] = this.number_of_adults;
+            json['number_of_children'] = this.number_of_children;
+
+            return json;
+        },
     });
 
 });

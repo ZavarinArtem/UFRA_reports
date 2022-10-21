@@ -1,6 +1,5 @@
 odoo.define('ufra_number_of_people_in_pos.PaymentScreen', function (require) {
 'use strict';
-console.log('123');
 
 const PaymentScreen = require('cha.PaymentScreen');
 const Registries = require('point_of_sale.Registries');
