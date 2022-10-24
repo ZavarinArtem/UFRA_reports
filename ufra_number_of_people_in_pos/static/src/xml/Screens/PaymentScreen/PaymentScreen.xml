@@ -8,11 +8,11 @@
             <t t-if="env.pos.config.picking_type_code == 'outgoing'">
                 <div class="client-detail" style="padding-bottom: 10px;" id="number-of-adults">
                     <span class="label" style="font-size: 2em; font-weight: bold;">Кіл-ть дорослих:</span><br/>
-                    <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_adults" t-att-value="props.number_of_adults || currentOrder.number_of_adults || ''" t-on-change="captureChange"/>
+                    <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_adults" t-att-value="changes['number_of_adults'] || 1" t-on-change="captureChange"/>
                 </div>
                 <div class="client-detail" style="padding-bottom: 10px;" id="number-of-children">
                     <span class="label" style="font-size: 2em; font-weight: bold;">Кіл-ть дітей:</span><br/>
-                    <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_children" t-att-value="props.number_of_children || currentOrder.number_of_children || ''" t-on-change="captureChange"/>
+                    <input class="detail" style="width: 282px; font-size: 3em;" name="number_of_children" t-att-value="changes['number_of_children'] || 0" t-on-change="captureChange"/>
                 </div>
             </t>
         </xpath>

@@ -14,7 +14,6 @@ const UFRAPaymentScreen = (PaymentScreen) =>
             this.changes['number_of_adults'] = this.currentOrder.number_of_adults || 1;
             this.changes['number_of_children'] = this.currentOrder.number_of_children || 0;
 
-            console.log(this.currentOrder);
         }
 
         async _finalizeValidation()
@@ -27,6 +26,7 @@ const UFRAPaymentScreen = (PaymentScreen) =>
         }
 
         async selectClient() {
+
             const oldClient = this.currentOrder.get_client();
             await super.selectClient();
 
@@ -35,6 +35,7 @@ const UFRAPaymentScreen = (PaymentScreen) =>
                 this.changes.number_of_adults  = client.number_of_adults;
                 this.changes.number_of_children  = client.number_of_children;
             }
+            console.log(this.changes);
         }
 
     };
