@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ufra_number_of_people_in_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-24 06:50+0000\n"
+"PO-Revision-Date: 2022-10-24 10:07+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: uk\n"
+
+#. module: ufra_number_of_people_in_pos
+#: model:ir.model,name:ufra_number_of_people_in_pos.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: ufra_number_of_people_in_pos
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_pos_order__number_of_adults
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_res_partner__number_of_adults
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_res_users__number_of_adults
+msgid "Number of Adults"
+msgstr "Кількість дорослих"
+
+#. module: ufra_number_of_people_in_pos
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_pos_order__number_of_children
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_res_partner__number_of_children
+#: model:ir.model.fields,field_description:ufra_number_of_people_in_pos.field_res_users__number_of_children
+msgid "Number of Children"
+msgstr "Кількість дітей"
+
+#. module: ufra_number_of_people_in_pos
+#: model:ir.model,name:ufra_number_of_people_in_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Замовлення (ТП)"
