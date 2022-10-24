@@ -14,4 +14,16 @@
         </field>
     </record>
 
+    <record id="view_pos_order_tree" model="ir.ui.view">
+        <field name="name">ufra_number_of_people_in_pos.pos.order.tree</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
+        <field name="arch" type="xml">
+            <field name="driver_id" position="before">
+                <field name="number_of_adults" />
+                <field name="number_of_children" />
+            </field>
+        </field>
+    </record>
+
 </odoo>

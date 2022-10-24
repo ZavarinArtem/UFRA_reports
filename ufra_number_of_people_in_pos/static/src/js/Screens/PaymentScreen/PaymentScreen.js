@@ -31,7 +31,8 @@ const UFRAPaymentScreen = (PaymentScreen) =>
             await super.selectClient();
 
             const client = this.currentOrder.get_client();
-            if (oldClient !== client) {
+
+            if (client && oldClient !== client) {
                 this.changes.number_of_adults  = client.number_of_adults;
                 this.changes.number_of_children  = client.number_of_children;
             }

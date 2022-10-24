@@ -29,8 +29,8 @@ odoo.define('ufra_number_of_people_in_pos.models', function (require) {
             _super_order.init_from_JSON.apply(this, arguments);
 
             const client = this.get_client();
-            this.number_of_adults = json['number_of_adults'] || client.number_of_adults;
-            this.number_of_children = json['number_of_children'] || client.number_of_children;
+            this.number_of_adults = json['number_of_adults'] || (client ? client.number_of_adults : null) || 1;
+            this.number_of_children = json['number_of_children'] || (client ? client.number_of_children : null) || 0;
 
         },
 
