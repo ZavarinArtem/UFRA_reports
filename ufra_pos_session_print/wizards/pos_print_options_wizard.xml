@@ -13,12 +13,14 @@
 <!--                <field name="codes_len" invisible="1"/>-->
 <!--                <field name="partners_len" invisible="1"/>-->
 <!--                <group name="codes" attrs="{'invisible': [('codes_len', '&lt;=', 1)]}">-->
-<!--                    <field name="selected_code" widget="radio"/>-->
-<!--                </group>-->
+                <group name="codes">
+                    <field name="selected_code" widget="radio"/>
+                </group>
 <!--                <group name="partners" attrs="{'invisible': [('partners_len', '&lt;=', 1)]}">-->
-<!--                    <field name="partners" invisible="1"/>-->
-<!--                    <field name="selected_partner" domain="[('id', 'in', partners)]"/>-->
-<!--                </group>-->
+                <group name="partners">
+                    <field name="partners" invisible="1"/>
+                    <field name="selected_partner" domain="[('id', 'in', partners)]"/>
+                </group>
                 <footer>
                     <button string="Confirm" class="oe_highlight" type="object" name="confirm" />
                     <button string="Cancel" class="btn-secondary" special="cancel" />

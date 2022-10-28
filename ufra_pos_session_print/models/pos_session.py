@@ -30,7 +30,7 @@ class PosSession(models.Model):
         else:
             return self._get_print_all_docs_action()
 
-    def _get_print_all_docs_action(self, domain=None):
+    def get_print_all_docs_action(self, domain=None):
        
         if domain is None:
             orders = self.order_ids.ids
