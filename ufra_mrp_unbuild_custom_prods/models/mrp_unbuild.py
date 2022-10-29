@@ -21,6 +21,18 @@ class MrpUnbuild(models.Model):
                 custom_product_line_ids = self.env['mrp.unbuild.custom.product.line'].sudo().create(vals)
                 self.custom_product_line_ids = [(6, 0, custom_product_line_ids.ids)]
 
+    def _generate_produce_moves(self):
+        moves = self.env['stock.move']
+        for unbuild in self:
+            if unbuild.custom_product_line_ids:
+                for line in unbuild.custom_product_line_ids:
+                    moves += unbuild._generate_move_from_bom_line(line.product_id, line.product_uom_id, line.product_qty,
+                                                              bom_line_id=line.bom_line_id)
+            else:
+                moves += super()._generate_produce_moves(self)
+
+        return moves
+
 
 class MrpUnbuildCustomProductLine(models.Model):
 

@@ -41,6 +41,21 @@ class PosSession(models.Model):
             domain = ['&'] + domain + [('session_id', '=', self.id,)]
             order_ids = self.env['pos.order'].search(domain)
         orders = order_ids.ids
+        products_dict = {}
+
+        for order_id in order_ids:
+            for line in order_id.lines:
+                product = (line.full_product_name, line.product_uom_id)
+                qty = products_dict.get(product, 0)
+                products_dict[product] = qty + line.qty
+
+        products = []
+        for key in products_dict:
+            products.append({
+                'full_product_name': key[0],
+                'product_uom_id': key[1].id,
+                'qty': products_dict[key],
+            })
 
         if len(orders):
 
@@ -48,6 +63,7 @@ class PosSession(models.Model):
                 'session_id': self.id,
                 'orders': orders,
                 'picking_type_code': order_ids[0].picking_type_code,
+                'products': products,
             }
             action = self.env.ref('ufra_pos_session_print.pos_session_print_all_docs_action').report_action(self, data=data)
             return action

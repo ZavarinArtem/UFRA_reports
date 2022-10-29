@@ -157,43 +157,25 @@
                 <t t-set="sum_qty" t-value="0"/>
                 <t t-set="current_row_number" t-value="0"/>
 
-                <t t-foreach="docs.sudo().with_context(lang='uk_UA')" t-as="doc">
-                    <t t-foreach="doc.lines" t-as="line">
+                <t t-foreach="products" t-as="line">
 
-                        <t t-set="current_row_number" t-value="current_row_number + 1"/>
-                        <t t-set="sum_qty" t-value="sum_qty + line.qty"/>
+                    <t t-set="current_row_number" t-value="current_row_number + 1"/>
+                    <t t-set="sum_qty" t-value="sum_qty + line['qty']"/>
 
-                        <tr>
-                            <td name="td_number" align="center">
-                                <span t-raw="current_row_number" style="text-indent:10px"/>
-                            </td>
-                            <td name="td_name">
-                                <span t-field="line.full_product_name" style="text-indent:10px"/>
-                            </td>
-                            <td name="td_quantity" class="text-right" align="right">
-                                <span t-field="line.qty"/>
-                            </td>
-                            <td name="td_units" class="text-right" align="center">
-                                <span t-field="line.product_uom_id"/>
-                            </td>
-                        </tr>
-                        <t t-if="'bom_ids' in line.product_id._fields and line.product_id.bom_ids and line.product_id.bom_ids[0].type == 'phantom'">
-                            <tr t-foreach="line.product_id.bom_ids[0].bom_line_ids" t-as="bom_line" class="text-muted">
-                                <td name="td_number" align="center">
-                                    <span style="text-indent:10px"></span>
-                                </td>
-                                <td name="td_name">
-                                    <i><span t-field="bom_line.product_id.name" style="text-indent:10px"/></i>
-                                </td>
-                                <td name="td_quantity" class="text-right" align="right">
-                                    <span t-esc="('%.2f' % (bom_line.product_qty * line.qty)).replace('.', ',')"/>
-                                </td>
-                                <td name="td_units" class="text-right" align="center">
-                                    <span t-field="bom_line.product_uom_id"/>
-                                </td>
-                            </tr>
-                        </t>
-                    </t>
+                    <tr>
+                        <td name="td_number" align="center">
+                            <span t-raw="current_row_number" style="text-indent:10px"/>
+                        </td>
+                        <td name="td_name">
+                            <span t-esc="line['full_product_name']" style="text-indent:10px"/>
+                        </td>
+                        <td name="td_quantity" class="text-right" align="right">
+                            <span t-esc="line['qty']"/>
+                        </td>
+                        <td name="td_units" class="text-right" align="center">
+                            <span t-esc="env['uom.uom'].search([('id', '=', line['product_uom_id'])]).name"/>
+                        </td>
+                    </tr>
                 </t>
             </tbody>
         </table>
