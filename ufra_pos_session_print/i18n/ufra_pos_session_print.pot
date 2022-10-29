@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ufra_pos_session_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-29 08:07+0000\n"
+"PO-Revision-Date: 2022-10-29 08:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_order_order_line_table_template
+msgid "), Кількість, загалом:"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_vydatkova_nakladna_template
+msgid ""
+"<br/>\n"
+"                        _________________________________________"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_partner_header_template
+msgid ""
+"<br/>\n"
+"                        тел."
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_prybutkova_nakladna_template
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_vydatkova_nakladna_template
+msgid ""
+"<br/>\n"
+"                    _________________________________________"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_print_options_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__code_set
+msgid "Code set"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_print_options_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model,name:ufra_pos_session_print.model_pos_print_options_wizard
+msgid "Options for Printing All Orders from PoS Session"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__partner_set
+msgid "Partner Set"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_print_options_wizard_form
+msgid "Please, select following options:"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model,name:ufra_pos_session_print.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.actions.report,name:ufra_pos_session_print.pos_session_print_all_docs_action
+#: model:ir.actions.server,name:ufra_pos_session_print.model_pos_session_action_print_all_docs
+msgid "Print All Session Docs"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_print_options_wizard_form
+msgid "Print Options"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__selected_code
+msgid "Selected Code"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__selected_partner
+msgid "Selected Partner"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__session_id
+msgid "Session"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model:ir.model.fields,field_description:ufra_pos_session_print.field_pos_print_options_wizard__session_partners_ids
+msgid "Session Partners"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_prybutkova_nakladna_template
+msgid "Водій"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_order_order_line_table_template
+msgid "Всього найменувань:"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_vydatkova_nakladna_template
+msgid "Від постачальника"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_legal_basis_template
+msgid "Гуманітарна допомога"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_order_order_line_table_template
+msgid "Кіл-сть"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_order_order_line_table_template
+msgid "Найменування"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.pos_order_order_line_table_template
+msgid "Од.вим."
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_prybutkova_nakladna_template
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_footer_vydatkova_nakladna_template
+msgid "Отримав(ла)"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_legal_basis_template
+msgid "Правова підстава:&amp;nbsp;&amp;nbsp;"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_header_name_template
+msgid "від"
+msgstr ""
+
+#. module: ufra_pos_session_print
+#: model_terms:ir.ui.view,arch_db:ufra_pos_session_print.order_header_name_template
+msgid "року"
+msgstr ""

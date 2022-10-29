@@ -9,21 +9,18 @@
                     Please, select following options:
                 </h2>
                 <span/>
-                <field name="session_id"/>
-<!--                <field name="codes_len" invisible="1"/>-->
-<!--                <field name="partners_len" invisible="1"/>-->
-<!--                <group name="codes" attrs="{'invisible': [('codes_len', '&lt;=', 1)]}">-->
-                <group name="codes">
+                <field name="code_set" invisible="1"/>
+                <field name="partner_set" invisible="1"/>
+                <group name="codes" attrs="{'invisible': [('code_set', '=', True)]}">
                     <field name="selected_code" widget="radio"/>
                 </group>
-<!--                <group name="partners" attrs="{'invisible': [('partners_len', '&lt;=', 1)]}">-->
-                <group name="partners">
-                    <field name="partners" invisible="1"/>
-                    <field name="selected_partner" domain="[('id', 'in', partners)]"/>
+                <group name="partners" attrs="{'invisible': [('partner_set', '=', True)]}">
+                    <field name="session_partners_ids" invisible="1"/>
+                    <field name="selected_partner" domain="[('id', 'in', session_partners_ids)]"/>
                 </group>
                 <footer>
-                    <button string="Confirm" class="oe_highlight" type="object" name="confirm" />
-                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                    <button string="Confirm" name="action_done" type="object" class="btn-primary" />
+                    <button name="cancel_button" string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>

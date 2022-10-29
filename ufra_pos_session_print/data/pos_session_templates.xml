@@ -1,0 +1,299 @@
+<odoo>
+    <template id="pos_session_print_all_docs_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="docs" t-value="env['pos.order'].search([('id', 'in', orders)])"/>
+                <t t-set="session" t-value="env['pos.session'].search([('id', '=', session_id)])"/>
+                <t t-set="doc" t-value="docs[0]"/>
+                <t t-set="date_order" t-value="session.start_at"/>
+
+                <t t-if="picking_type_code == 'incoming'">
+                    <t t-call="ufra_pos_session_print.pos_session_prybutkova_nakladna_container"/>
+                </t>
+                <t t-elif="picking_type_code == 'outgoing'">
+                    <t t-call="ufra_pos_session_print.pos_session_vydatkova_nakladna_container"/>
+                </t>
+                <t t-else=""/>
+            </t>
+        </t>
+    </template>
+
+    <template id="pos_session_prybutkova_nakladna_container">
+
+        <t t-set="nakladna_type" t-value="'Загальна прибуткова накладна '"/>
+        <t t-set="header_part_1_name" t-value="'Постачальник:'"/>
+        <t t-set="header_part_2_name" t-value="'Отримувач:'"/>
+
+        <div class="page">
+            <t t-call="ufra_pos_session_print.order_header_name_template"/>
+
+            <t t-call="ufra_pos_session_print.order_partner_header_template"/>
+            <t t-call="ufra_pos_session_print.order_company_header_template"/>
+
+            <t t-call="ufra_pos_session_print.order_legal_basis_template"/>
+            <t t-call="ufra_pos_session_print.pos_order_order_line_table_template"/>
+            <t t-call="ufra_pos_session_print.order_footer_prybutkova_nakladna_template"/>
+        </div>
+    </template>
+
+    <!--Vydatkova Nakladna POS Order-->
+    <template id="pos_session_vydatkova_nakladna_container">
+
+        <t t-set="nakladna_type" t-value="'Загальна видаткова накладна '"/>
+        <t t-set="header_part_1_name" t-value="'Отримувач:'"/>
+        <t t-set="header_part_2_name" t-value="'Постачальник:'"/>
+
+        <div class="page">
+            <t t-call="ufra_pos_session_print.order_header_name_template"/>
+
+            <t t-call="ufra_pos_session_print.order_company_header_template"/>
+            <t t-call="ufra_pos_session_print.order_partner_header_template"/>
+
+            <t t-call="ufra_pos_session_print.order_legal_basis_template"/>
+            <t t-call="ufra_pos_session_print.pos_order_order_line_table_template"/>
+            <t t-call="ufra_pos_session_print.order_footer_vydatkova_nakladna_template"/>
+        </div>
+    </template>
+
+    <template id="order_header_name_template">
+        <table name="top_header" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <br/>
+                <th width="100%" align="left">
+                    <h2 style="border-bottom: 3px solid black; padding-bottom: 4px; font-size: 25px;">
+                        <span style="white-space:nowrap;">
+                            <span t-esc="nakladna_type"/> №
+                            <t t-set="split_name" t-value="session.name.split('/')"/>
+                            <t t-if="len(split_name) &gt; 0">
+                                <t t-set="sequence" t-value="split_name[-1]"/>
+                                <span t-esc="sequence"/>
+                            </t>
+                            <t t-else="">
+                                <span t-field="session.name"/>
+                            </t>
+                                від
+                            <span t-esc="date_order" t-options="{'widget': 'date', 'format': 'dd MMMM YYYY'}"/>
+                                року
+                        </span>
+                    </h2>
+                </th>
+            </tr>
+        </table>
+    </template>
+
+    <template id="order_company_header_template">
+        <table name="header" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="20%" align="left" valign="top">
+                    <u><span t-esc="header_part_2_name"/></u>
+                </td>
+                <td width="80%" align="left">
+                    <t t-if="doc.company_id.partner_id.legal_name">
+                        <span t-field="doc.company_id.partner_id.legal_name"/>
+                    </t>
+                    <t t-else="">
+                        <span t-field="doc.company_id.partner_id.name"/>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="order_partner_header_template">
+        <table name="header" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left" valign="top" width="20%">
+                    <u><span t-esc="header_part_1_name"/></u>
+                </td>
+                <td align="left" width="80%">
+                    <t t-if="doc.partner_id.legal_name">
+                        <span t-field="doc.partner_id.legal_name"/>
+                    </t>
+                    <t t-else="">
+                        <span t-field="doc.partner_id.name"/>
+                    </t>
+                    <t t-if="doc.partner_id.phone or doc.partner_id.mobile">
+                        <br/>
+                        тел.
+                        <span t-esc="doc.partner_id.phone or doc.partner_id.mobile"/>
+                    </t>
+                    <br/>
+                    <br/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="order_legal_basis_template">
+        <table name="header" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2" align="left" valign="top">
+                    Правова підстава:&amp;nbsp;&amp;nbsp; <t t-if="legal_basis" t-esc="legal_basis"/><t t-else="">Гуманітарна допомога</t>
+                    <br/>
+                    <br/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="pos_order_order_line_table_template">
+        <style>
+            #o_main_table td, #o_main_table th,
+            #o_sub_table td, #o_sub_table th {
+            padding: 5px 10px;
+            }
+        </style>
+        <table width="100%" id="o_main_table" class="table table-sm o_main_table" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse;">
+            <thead style="display: table-row-group">
+                <tr>
+                    <th width="5%" name="th_number" class="text-left">№</th>
+                    <th name="th_description" class="text-left">Найменування</th>
+                    <th width="12%" name="th_quantity" class="text-right">Кіл-сть</th>
+                    <th width="10%" name="th_units" class="text-right">Од.вим.</th>
+                </tr>
+            </thead>
+            <tbody class="sale_tbody">
+
+                <t t-set="sum_qty" t-value="0"/>
+                <t t-set="current_row_number" t-value="0"/>
+
+                <t t-foreach="docs.sudo().with_context(lang='uk_UA')" t-as="doc">
+                    <t t-foreach="doc.lines" t-as="line">
+
+                        <t t-set="current_row_number" t-value="current_row_number + 1"/>
+                        <t t-set="sum_qty" t-value="sum_qty + line.qty"/>
+
+                        <tr>
+                            <td name="td_number" align="center">
+                                <span t-raw="current_row_number" style="text-indent:10px"/>
+                            </td>
+                            <td name="td_name">
+                                <span t-field="line.full_product_name" style="text-indent:10px"/>
+                            </td>
+                            <td name="td_quantity" class="text-right" align="right">
+                                <span t-field="line.qty"/>
+                            </td>
+                            <td name="td_units" class="text-right" align="center">
+                                <span t-field="line.product_uom_id"/>
+                            </td>
+                        </tr>
+                        <t t-if="'bom_ids' in line.product_id._fields and line.product_id.bom_ids and line.product_id.bom_ids[0].type == 'phantom'">
+                            <tr t-foreach="line.product_id.bom_ids[0].bom_line_ids" t-as="bom_line" class="text-muted">
+                                <td name="td_number" align="center">
+                                    <span style="text-indent:10px"></span>
+                                </td>
+                                <td name="td_name">
+                                    <i><span t-field="bom_line.product_id.name" style="text-indent:10px"/></i>
+                                </td>
+                                <td name="td_quantity" class="text-right" align="right">
+                                    <span t-esc="('%.2f' % (bom_line.product_qty * line.qty)).replace('.', ',')"/>
+                                </td>
+                                <td name="td_units" class="text-right" align="center">
+                                    <span t-field="bom_line.product_uom_id"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </t>
+            </tbody>
+        </table>
+        <table width="100%">
+            <tr>
+                <td style="border-bottom: 3px solid black; padding-bottom: 4px;">
+                    <br/>
+                    <span style="white-space:nowrap;">
+                        Всього найменувань:
+                        <span t-raw="current_row_number"/>
+                        (
+                        <span t-raw="doc.num2words(current_row_number)"/>
+                        ), Кількість, загалом:
+                        <span t-esc="'{:10.2f}'.format(sum_qty).replace('.',',')"/>
+                        (
+                        <span t-raw="doc.num2words(doc.num2word_report_round(sum_qty))"/>
+                        )
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!--Footer block for prybutkova nakladna template-->
+    <template id="order_footer_prybutkova_nakladna_template">
+        <table name="signs" width="100%">
+            <tr>
+                <td width="33%">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Водій</h4>
+                    <br/>
+                    _________________________________________
+                </td>
+                <td width="33%">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Отримав(ла)</h4>
+                    <br/>
+                    _________________________________________
+                </td>
+                <td width="33%"/>
+            </tr>
+        </table>
+    </template>
+
+    <!--Footer block for vydatkova nakladna template-->
+    <template id="order_footer_vydatkova_nakladna_template">
+        <table name="signs" width="100%">
+            <tr>
+                <td width="33%">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>
+                        Від постачальника
+                    </h4>
+                    <br/>
+                    _________________________________________
+                </td>
+                <td width="33%">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>
+                        Отримав(ла)
+                    </h4>
+                    <br/>
+                    _________________________________________
+                </td>
+                <t t-if="not (doc._name == 'pos.order' and doc.destination_location_id)">
+                    <td width="33%">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h4 style="color: white !important;">
+                            0
+                        </h4>
+                        <br/>
+                        _________________________________________
+                    </td>
+                </t>
+            </tr>
+            <tr>
+                <td width="33%"/>
+                <td width="33%">
+                    <span/>
+                </td>
+                <td width="33%">
+                    <t t-if="doc.partner_id.legal_name">
+                        <span t-esc="doc.partner_id.legal_name"/>
+                    </t>
+                    <t t-else="">
+                        <span t-esc="doc.partner_id.name"/>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+</odoo>

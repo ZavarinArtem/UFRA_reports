@@ -9,44 +9,52 @@ class PosPrintOptionsWizard(models.TransientModel):
 
     session_id = fields.Many2one('pos.session')
 
-    codes = fields.Selection(selection='get_codes')
-    codes_len = fields.Integer(compute='get_codes_len')
-    partners = fields.Many2many('res.partner', compute='get_partners')
-    partners_len = fields.Integer(compute='get_partners_len')
-
     selected_code = fields.Selection(selection='get_codes')
+    code_set = fields.Boolean('Code set', default=False)
+
+    session_partners_ids = fields.Many2many('res.partner')
     selected_partner = fields.Many2one('res.partner')
-
-    @api.model
-    def default_get(self, fields_list):
-        result = super().default_get(fields_list)
-        result['session_id'] = self.env['pos.session'].browse(self._context.get('session_id', None))
-
-        return result
+    partner_set = fields.Boolean('Partner Set', default=False)
 
     def get_codes(self):
-        order_ids = self.session_id.order_ids
-        return list(dict.fromkeys(order_ids.mapped('picking_type_code')))
+        codes = []
+        code_field = self.env['ir.model.fields'].search([
+            ('model_id.model', '=', 'stock.picking.type'),
+            ('name', '=', 'code')
+        ])
+        for selection_id in code_field.selection_ids:
+            codes.append((selection_id.value, selection_id.name))
+        return codes
 
-    def get_partners(self):
-        return self.session_id.order_ids.mapped('partner_id')
+    #
+    # def get_partners_len(self):
+    #     self.get_partners()
+    #     return len(self.partners)
 
-    def get_codes_len(self):
-        self.get_codes()
-        return len(self.codes)
+    @api.model_create_single
+    def create(self, vals):
+        if vals.get('session_id'):
 
-    def get_partners_len(self):
-        self.get_partners()
-        return len(self.partners)
+            session_id = self.env['pos.session'].browse(vals['session_id'])
+            session_partners_ids = session_id.order_ids.mapped('partner_id')
+            if len(session_partners_ids) == 1:
+                vals['selected_partner'] = session_partners_ids[0].id
+                vals['partner_set'] = True
 
-    def confirm(self):
+            vals['session_partners_ids'] = [(6, 0, session_partners_ids.ids)]
+
+            session_codes = list(dict.fromkeys(session_id.order_ids.mapped('picking_type_code')))
+            if len(session_codes) == 1:
+                vals['selected_code'] = session_codes[0]
+                vals['code_set'] = True
+        return super(PosPrintOptionsWizard, self).create(vals)
+
+    def action_done(self):
         if self.selected_code and self.selected_partner:
             domain = [
                 ('picking_type_code', '=', self.selected_code),
-                ('partner_id', '=', self.selected_partner),
+                ('partner_id', '=', self.selected_partner.id),
             ]
             return self.session_id.get_print_all_docs_action(domain)
         else:
             return None
-
-

@@ -17,18 +17,4 @@
         <field name="report_file">ufra_pos_session_print.pos_session_print_all_docs_template</field>
     </record>
 
-    <template id="pos_session_print_all_docs_template">
-        <t t-set="orders" t-value="env['pos.order'].search([('id', 'in', orders)])"/>
-        <t t-foreach="orders" t-as="order">
-            <t t-set="docs" t-value="order"/>
-            <t t-if="order.picking_type_code == 'incoming'">
-                <t t-call="cha_stock.pos_order_prybutkova_nakladna_container"/>
-            </t>
-            <t t-elif="order.picking_type_code == 'outgoing'">
-                <t t-call="cha_stock.pos_order_vydatkova_nakladna_container"/>
-            </t>
-            <t t-else=""/>
-        </t>
-    </template>
-
 </odoo>

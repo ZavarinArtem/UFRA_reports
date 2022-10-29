@@ -21,6 +21,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/pos_session_actions.xml',
+        'data/pos_session_templates.xml',
         'wizards/pos_print_options_wizard.xml',
     ],
 
