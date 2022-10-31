@@ -41,11 +41,6 @@ msgid "Confirm"
 msgstr ""
 
 #. module: ufra_mrp_unbuild_custom_prods
-#: model_terms:ir.ui.view,arch_db:ufra_mrp_unbuild_custom_prods.mrp_clear_custom_products_wizard_form
-msgid "Continue?"
-msgstr ""
-
-#. module: ufra_mrp_unbuild_custom_prods
 #: model:ir.model.fields,help:ufra_mrp_unbuild_custom_prods.field_mrp_unbuild_custom_product_line__product_uom_category_id
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
@@ -67,8 +62,9 @@ msgstr ""
 #. module: ufra_mrp_unbuild_custom_prods
 #: model_terms:ir.ui.view,arch_db:ufra_mrp_unbuild_custom_prods.mrp_clear_custom_products_wizard_form
 msgid ""
-"Current unlink already has custom products selected. Filling by bill will "
-"rewrite them."
+"Current unlink already has custom products selected. Filling by bill will rewrite them.\n"
+"                <span/>\n"
+"                Continue?"
 msgstr ""
 
 #. module: ufra_mrp_unbuild_custom_prods
