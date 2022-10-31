@@ -5,13 +5,9 @@
         <field name="model">mrp.clear.custom.products.wizard</field>
         <field name="arch" type="xml">
             <form string="Print Options">
-                <h2>
-                    Current unlink already has custom products selected. Filling by bill will rewrite them.
-                </h2>
+                Current unlink already has custom products selected. Filling by bill will rewrite them.
                 <span/>
-                <h2>
-                    Continue?
-                </h2>
+                Continue?
                 <footer>
                     <button string="Confirm" name="confirm" type="object" class="btn-primary" />
                     <button name="cancel_button" string="Cancel" class="btn-secondary" special="cancel"/>
