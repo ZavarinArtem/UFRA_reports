@@ -20,6 +20,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/mrp_unbuild_views.xml',
+        'wizards/mrp_clear_custom_products_wizard.xml',
     ],
 
     'demo': [],

@@ -6,8 +6,14 @@
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
-                <field name="custom_product_line_ids" widget="one2many">
-                    <button name="fill_by_bom" type="object" title="Fill by Bill of Materials"/>
+                <button
+                        name="fill_by_bom"
+                        type="object"
+                        string="Fill by Bill of Materials"
+                        class="oe_edit_only oe_highlight"
+                        attrs="{'invisible': [('state', '=', 'done'), ]}"
+                />
+                <field name="custom_product_line_ids" widget="one2many" attrs="{'readonly': [('state', '=', 'done'), ]}">
                     <tree editable="bottom">
                         <field name="company_id" invisible="1"/>
                         <field name="product_uom_category_id" invisible="1"/>
