@@ -10,7 +10,7 @@ class PurchaseOrder(models.Model):
 
     def _get_company_signatory(self):
         if self.company_id.partner_id.signatory.comment:
-            return str(self.company_id.partner_id.signatory.comment).replace('<p>', '').replace('</p>', '').replace('<br>', '')
+            return self.company_id.partner_id.signatory.comment.striptags()
         else:
             return (self.company_id.partner_id.signatory.function or '') + ' ' \
                    + (self.company_id.partner_id.signatory.name or '')
@@ -55,7 +55,7 @@ class PosOrder(models.Model):
 
     def _get_company_signatory(self):
         if self.company_id.partner_id.signatory.comment:
-            return str(self.company_id.partner_id.signatory.comment).replace('<p>', '').replace('</p>', '').replace('<br>', '')
+            return self.company_id.partner_id.signatory.comment.striptags()
         else:
             return (self.company_id.partner_id.signatory.function or '') + ' ' \
                    + (self.company_id.partner_id.signatory.name or '')

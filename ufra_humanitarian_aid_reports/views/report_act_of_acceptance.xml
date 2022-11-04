@@ -62,25 +62,35 @@
                                     наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
                                 </span>
                             </p>
-                            <table border='1' cellspacing='0' cellpadding='0'
-                                   style='border-collapse:collapse;border:none'>
-                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
-                                    <td width='57' valign='top'>
+                            <!--Kaliuta-->
+                            <div class="page">
+                              <style type="text/css">
+                                .spoc_table th, .spoc_table td {
+                                  vertical-align: middle;
+                                  border:solid 1px;
+                                  padding: 0 10px;
+                                }
+                              </style>
+                            </div>
+                             <!--Kaliuta-->
+                            <table class='spoc_table'>
+                                <tr>
+                                    <td width='57'>
                                         <p>
                                             <span>№п/п</span>
                                         </p>
                                     </td>
-                                    <td width='349' valign='top'>
+                                    <td width='349'>
                                         <p>
                                             <span>Найменування товару</span>
                                         </p>
                                     </td>
-                                    <td width='142' valign='top'>
+                                    <td width='142'>
                                         <p>
                                             <span>Одинця виміру</span>
                                         </p>
                                     </td>
-                                    <td width='94' valign='top'>
+                                    <td width='94'>
                                         <p>
                                             <span >Кількість</span>
                                         </p>
@@ -88,15 +98,15 @@
                                 </tr>
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
-                                    <tr style='line-height:normal'>
-                                        <td width='57' valign='top' style="padding-left:10px;">
+                                    <tr>
+                                        <td width='57'>
                                             <p>
                                                 <span>
                                                     <t t-out="line_index + 1"/>.
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top' style="padding-left: 10px;">
+                                        <td width='349'>
                                             <p>
                                                 <span>
                                                     <t t-out="line.name"/>
@@ -104,14 +114,14 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top' style="padding-left: 10px;">
+                                        <td width='142'>
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_uom.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top' style="padding-left: 10px;">
+                                        <td width='94'>
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_qty"/>
@@ -183,42 +193,52 @@
                         ОДНОГО ПРОДУКТОВОГО ПАКЕТУ:
                     </span>
                 </p>
-                <table border='1' cellspacing='0' cellpadding='0'
-                       style='border-collapse:collapse;border:none'>
-                    <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                        <td width='349' valign='top' style='width:261.5pt;border-left:none'>
+                <!--Kaliuta-->
+                <div class="page">
+                  <style type="text/css">
+                    .spoc_table th, .spoc_table td {
+                      vertical-align: middle;
+                      border:solid 1px;
+                      padding: 0 10px;
+                    }
+                  </style>
+                </div>
+                <!--Kaliuta-->
+                <table class='spoc_table'>
+                    <tr>
+                        <td width='349'>
                             <p>
                                 <span>Найменування товару</span>
                             </p>
                         </td>
-                        <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                        <td width='142'>
                             <p>
                                 <span>Одинця виміру</span>
                             </p>
                         </td>
-                        <td width='94' valign='top' style='width:70.6pt;border-left:none'>
+                        <td width='94'>
                             <p>
                                 <span >Кількість</span>
                             </p>
                         </td>
                     </tr>
                     <t t-foreach="bom.bom_line_ids" t-as="bom_line">
-                        <tr style='line-height:normal;padding:0in 5.4pt 0in 5.4pt'>
-                            <td width='349' valign='top' style="padding-left: 10px;">
+                        <tr>
+                            <td width='349'>
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='142' valign='top' style="padding-left: 10px;">
+                            <td width='142'>
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_uom_id.name"/>
                                     </span>
                                 </p>
                             </td>
-                            <td width='94' valign='top' style="padding-left: 10px;">
+                            <td width='94'>
                                 <p>
                                     <span>
                                         <t t-out="bom_line.product_qty"/>
@@ -227,18 +247,18 @@
                             </td>
                         </tr>
                     </t>
-                    <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
-                        <td width='349' valign='top' align='left' style="padding-left: 10px;">
+                    <tr>
+                        <td width='349'>
                             <p>
                                 <span>Вага набору</span>
                             </p>
                         </td>
-                        <td width='142' valign='top' style='width:106.3pt;border-left:none'>
+                        <td width='142'>
                             <p>
                                 <span> </span>
                             </p>
                         </td>
-                        <td width='94' valign='top' align='left' style="padding-left: 10px;">
+                        <td width='94'>
                             <p>
                                 <span>
                                     <t t-out="bom.weight"/>
@@ -396,41 +416,51 @@
                                     наступну безповоротну, безоплатну, матеріальну, благодійну допомогу:
                                 </span>
                             </p>
-                            <table border='1' cellspacing='0' cellpadding='0'
-                                   style='border-collapse:collapse;border:none'>
-                                <tr align='center' style='text-align:center;border:solid windowtext 1.0pt;line-height:normal'>
-                                    <td width='57' valign='top'>
+                            <!--Kaliuta-->
+                            <div class="page">
+                              <style type="text/css">
+                                .spoc_table th, .spoc_table td {
+                                  vertical-align: middle;
+                                  border:solid 1px;
+                                  padding: 0 10px;
+                                }
+                              </style>
+                            </div>
+                             <!--Kaliuta-->
+                            <table class="spoc_table">
+                                <tr>
+                                    <th width="57">
                                         <p>
                                             <span>№п/п</span>
                                         </p>
-                                    </td>
-                                    <td width='349' valign='top'>
+                                    </th>
+                                    <th width="349">
                                         <p>
                                             <span>Найменування товару</span>
                                         </p>
-                                    </td>
-                                    <td width='142' valign='top'>
+                                    </th>
+                                    <th width="142">
                                         <p>
-                                            <span>Одинця виміру</span>
+                                            <span>Одиниця виміру</span>
                                         </p>
-                                    </td>
-                                    <td width='94' valign='top'>
+                                    </th>
+                                    <th width="94">
                                         <p>
-                                            <span >Кількість</span>
+                                            <span>Кількість</span>
                                         </p>
-                                    </td>
+                                    </th>
                                 </tr>
                                 <t t-foreach="o.lines" t-as="line">
                                     <t t-set="bom" t-value="o._get_product_bom(line.product_id)"/>
-                                    <tr style='line-height:normal'>
-                                        <td width='57' valign='top' style="padding-left:10px;">
+                                    <tr>
+                                        <td width="57">
                                             <p>
                                                 <span>
                                                     <t t-out="line_index + 1"/>.
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='349' valign='top' style="padding-left: 10px;">
+                                        <td width="349">
                                             <p>
                                                 <span>
                                                     <t t-out="line.full_product_name"/>
@@ -438,14 +468,14 @@
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='142' valign='top' style="padding-left: 10px;">
+                                        <td width="142">
                                             <p>
                                                 <span>
                                                     <t t-out="line.product_uom_id.name"/>
                                                 </span>
                                             </p>
                                         </td>
-                                        <td width='94' valign='top' style="padding-left: 10px;">
+                                        <td width="94">
                                             <p>
                                                 <span>
                                                     <t t-out="line.qty"/>
